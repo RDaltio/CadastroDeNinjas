@@ -1,5 +1,6 @@
-package com.rdaltio.CadastroDeNinjas;
+package com.rdaltio.CadastroDeNinjas.Ninjas;
 
+import com.rdaltio.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,9 +10,17 @@ public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private String email;
+
     private int idade;
+
+    //  Muitos ninjas podem ter somente uma missão
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") // Foreign Key
+    private MissoesModel missoes;
 
     public NinjaModel() {
     }
